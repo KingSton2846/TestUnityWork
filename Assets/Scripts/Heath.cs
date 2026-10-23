@@ -29,12 +29,17 @@ public class Heath : NetworkBehaviour
     {
         if (!Object.HasStateAuthority) return;
 
-        CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
+        CurrentHealth = CalculateNewHealth(CurrentHealth, damage);
 
         if (CurrentHealth <= 0)
         {
             Die();
         }
+    }
+
+    public static int CalculateNewHealth(int currentHealth, int damage)
+    {
+        return Mathf.Max(0, currentHealth - damage);
     }
 
     private void Die()

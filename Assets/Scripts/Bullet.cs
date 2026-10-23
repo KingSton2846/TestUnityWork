@@ -13,7 +13,9 @@ public class Bullet : NetworkBehaviour
         _rb = GetComponent<Rigidbody>();
 
         _rb.AddForce(transform.forward * speed, ForceMode.Impulse);
-        if (Object.HasStateAuthority)
+        
+        // Добавляем проверку на null
+        if (Object != null && Object.HasStateAuthority) 
         {
             lifeTimer = TickTimer.CreateFromSeconds(Runner, lifeTime);
         }
